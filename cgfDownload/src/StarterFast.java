@@ -36,6 +36,9 @@ public class StarterFast {
 				in = new BufferedReader(new InputStreamReader(
 						yc.getInputStream()));
 				int n = number% 1000;
+				if (!new File("out/"+n).isDirectory()) {
+					new File("out/"+n).mkdir();
+				}
 				FileWriter fw = new FileWriter(new File("out/"+ n+"/"+ number));
 				BufferedWriter bw = new BufferedWriter(fw);
 				String inputLine;
@@ -45,6 +48,10 @@ public class StarterFast {
 				bw.flush();
 				bw.close();
 				in.close();
+				if (number% 100 ==0) {
+					System.out.println("" + number); 
+					
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,12 +27,11 @@ public class Starter {
 	public static void main(String[] args) throws Exception {
 
 		ExecutorService pool = Executors.newFixedThreadPool(10);
-		
-		for (int i = 100000; i < 2000000; i++) {
+		//
+		//440981 remove duplicate
+		for (int i = 471800; i < 2000000; i++) {
 			pool.execute(new MyRunnable(i));
-
 		}
-
 	}
 
 	public static String normalize(int i) {
@@ -56,7 +56,7 @@ public class Starter {
 		@Override
 		public void run() {
 			if (number%100 == 0)
-				System.out.println(number);
+				System.out.println(new Date().toString() + " "+ number );
 			try {
 				final WebClient webClient = new WebClient();
 				webClient.setJavaScriptEnabled(false);
@@ -89,10 +89,11 @@ public class Starter {
 					o.put("name", name);
 					o.put("club", club);
 					o.put("hcp", hcp);
+					o.put("number", number);
 
 					Mongo mongo = new Mongo();
 					DB db = mongo.getDB("cgf");
-					DBCollection collection = db.getCollection("names");
+					DBCollection collection = db.getCollection("names2");
 
 					collection.insert(o);
 					mongo.close();
