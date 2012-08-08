@@ -29,7 +29,7 @@ public class Starter {
 		ExecutorService pool = Executors.newFixedThreadPool(10);
 		//
 		//440981 remove duplicate
-		for (int i = 471800; i < 2000000; i++) {
+		for (int i = 948000; i < 2000000; i++) {
 			pool.execute(new MyRunnable(i));
 		}
 	}
